@@ -90,8 +90,6 @@ app.get("/", (req, res) => {
   return res.status(200).json("Hello world");
 });
 
-app.use("/api/v1", api);
-
 export default app;
 ```
 
