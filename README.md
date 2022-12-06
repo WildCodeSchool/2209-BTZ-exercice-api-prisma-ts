@@ -47,6 +47,8 @@ To install a dev dependency, use the -D flag with npm install like :
 npm install -D typescript ts-node-dev
 ```
 
+**Don't forget to create a .gitignore file and add the node_modules folder inside !!!**
+
 ## Scripts
 
 When all the dependencies are setup you will have to create a dev script to launch the development server in the package.json file.
