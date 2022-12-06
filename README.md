@@ -253,6 +253,8 @@ The sample connection string look like so:
 DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
 ```
 
+![enter image description here](https://res.cloudinary.com/prismaio/image/upload/v1628761154/docs/KkZe3hO.png)
+
 - `postgresql://` is the database protocol for mysql use `mysql://`
 - `johndoe` is your database username
 - `randompassword`is the database password
