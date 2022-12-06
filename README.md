@@ -80,6 +80,8 @@ First, create a file app.ts like this :
 ```js
 import Express from "express";
 
+import api from "./api";
+
 const app = Express();
 
 app.use(Express.json());
@@ -220,7 +222,34 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 - `5432` is the port your database is running on ( usually something like 3306 or 3308 for mysql ).
 - `mydb`is the name of the database you wanna connect to
 
+Once the connection string is ready go to the prisma.schema file and you should see this :
+
+```
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator  client  {
+provider = "prisma-client-js"
+}
+
+datasource  db  {
+provider = "postgresql"
+url = env("DATABASE_URL")
+}
+```
+
 Now you should know how to replace those values in order to connect your Prisma application to your database.
+
+in the datasource section, there is a "provider" key, replace the value with your SGBD system type.
+
+Example:
+For mysql set up the provider like below :
+
+```
+datasource  db  {
+provider = "mysql"
+url = env("DATABASE_URL")
+}
+```
 
 ## Prisma Commands
 
