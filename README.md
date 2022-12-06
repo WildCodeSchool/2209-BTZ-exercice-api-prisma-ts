@@ -2,9 +2,10 @@
 
 Hi! Here is an exerice for you !
 The goal is to build a simple API to manage:
--Books
--Collections
--Users ( Authors )
+
+- Books
+- Collections
+- Users ( Authors )
 
 # Rules
 
