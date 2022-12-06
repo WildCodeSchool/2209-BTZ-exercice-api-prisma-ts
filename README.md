@@ -315,9 +315,171 @@ If you want to visualize and manage your database you can run
 npx prisma studio
 ```
 
-## Let's go !
+## Define the routes for your API !
 
-With this simple tutorial you should be able to start building the application, ask me if you have any questions !
-( Sorry Tony, my english is not really good ! I did my very best ! )
+When **Prisma** is properly set up, it's time to define the routes for your entities !
 
-I expect a CRUD form each model ! ( Create Read Update Delete )
+First we will create the src folder if it doesn't exist. Next inside the src folder, add an **api** folder.
+Inside the src/api folder, create an index.ts file.
+Express work with routes and sub routes, so now we have to import the Router method from express like below :
+
+```js
+// src/api/index.ts
+
+import { Router } from "express";
+
+const router = Router();
+
+export default router;
+```
+
+This file will contain the beggining of all the routes of our API.
+
+## Create a folder for your first ressource
+
+Now we have to create a folder for the **book** ressource.
+This folder will contain the routes of our **CRUD**.
+
+The folder structure will look like this :
+
+```
+├── routes.ts
+├── interface.ts
+├── controller.ts
+├── handlers
+│   ├── getAll.ts
+│   └── getOne.ts
+│   └── update.ts
+│   └── delete.ts
+│   └── create.ts
+```
+
+Once you have the folder structure, let's define the interface file.
+
+This file is a typescript interface definition which purpose is to restrict our handlers functions.
+For the getAll handler you have to define the type of these params :
+
+- Url params
+- Query params
+- Response body type
+- Request body type
+
+Check the code below :
+
+```ts
+import { RequestHandler } from  "express";
+
+type BookBodyCreate {
+	title: string;
+	year: Date;
+}
+
+export  interface  BookHandlers {
+ getAll:  RequestHandler<null, Book[] | ResponseError, null>;
+ getOne: RequestHandler<{id: string}, Book | ResponseError, null>;
+ create: RequestHandler<null, Book | ResponseError, BookBodyCreate>
+}
+```
+
+The **ReqestHandler** type take several params. The first is the URL param, the second is the Response Body Type, the third is the Request Body Type and the fourth is the Request Query Type.
+You can see that as the second param we define a Type like **Book** or **Book[]** and a **ResponseError**.
+You have to define the ResponseError Type in a separate file and import it all the **interface.ts** files.
+
+Tips :
+
+```ts
+type ResponseError = {
+  message: string | unknown;
+};
+```
+
+You will have to define a type for each method in the **handlers** folder.
+Be careful with this file and pay attention to each types, you may encounter errors further if you do some mistakes here.
+
+---
+
+Now we can define our **handlers**.
+For the getAll method we will create a function of type **BookHandlers["getAll"]** like below :
+
+```ts
+import { BookHandlers } from  "../interface";
+import prisma from '../../../../prisma/client
+
+const getAllBooks:BookHandlers["getAll"] = async (req, res) => {
+  try{
+    const books = await prisma.book.findMany();
+    res.status(200).json(books);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message : error})
+  }
+};
+
+export default getAllBooks
+```
+
+---
+
+The **controller** file will contain a controller object with all our handlers as key like this :
+
+```js
+import getAll from "./handlers/getAll";
+import getOne from "./handlers/getOne";
+import create from "./handlers/create";
+import update from "./handlers/update";
+import delete_ from "./handlers/delete";
+
+const controller = {
+  getAll,
+  getOne,
+  create,
+  update,
+  delete: delete_,
+};
+
+export default controller;
+```
+
+---
+
+Now you can repeat the operation for each file in the handlers folder, don't forget to complete the **interface.ts** file before the method !
+
+---
+
+Let's take a look to the routes.ts file now.
+As we did in the src/api/index.ts file we have to initialize a router like so :
+
+```ts
+import { Router } from  "express";
+
+import controller from  "./controller";
+
+const  router  =  Router();
+
+router.get("/", controller.getAll);
+router.get("/:id", controller.getOne);
+...
+
+export  default  router;
+```
+
+---
+
+Once the router is ready with one route for each operation import it in the **src/api/index.ts**
+file like below :
+
+```ts
+import { Router } from "express";
+
+import books from "./books/routes";
+
+const router = Router();
+
+router.use("/books", books);
+
+export default router;
+```
+
+## Hurray ! You wrote your first CRUD !!
+
+You can now test all the routes and operations with postman or with your favorite http client !!
