@@ -80,8 +80,6 @@ First, create a file app.ts like this :
 ```js
 import Express from "express";
 
-import api from "./api";
-
 const app = Express();
 
 app.use(Express.json());
