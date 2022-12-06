@@ -319,3 +319,5 @@ npx prisma studio
 
 With this simple tutorial you should be able to start building the application, ask me if you have any questions !
 ( Sorry Tony, my english is not really good ! I did my very best ! )
+
+I expect a CRUD form each model ! ( Create Read Update Delete )
