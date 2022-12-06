@@ -237,19 +237,19 @@ url = env("DATABASE_URL")
 }
 ```
 
-Now you should know how to replace those values in order to connect your Prisma application to your database.
-
-in the datasource section, there is a "provider" key, replace the value with your SGBD system type.
+In the datasource section, there is a "provider" key, replace the value with your SGBD system type.
 
 Example:
 For mysql set up the provider like below :
 
 ```
 datasource  db  {
-provider = "mysql"
+provider = "postgresql"
 url = env("DATABASE_URL")
 }
 ```
+
+Now you should know how to replace those values in order to connect your Prisma application to your database.
 
 ## Prisma Commands
 
