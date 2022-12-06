@@ -354,6 +354,8 @@ The folder structure will look like this :
 │   └── create.ts
 ```
 
+## Create the interface file
+
 Once you have the folder structure, let's define the interface file.
 
 This file is a typescript interface definition which purpose is to restrict our handlers functions.
@@ -396,7 +398,7 @@ type ResponseError = {
 You will have to define a type for each method in the **handlers** folder.
 Be careful with this file and pay attention to each types, you may encounter errors further if you do some mistakes here.
 
----
+## Define the handlers
 
 Now we can define our **handlers**.
 For the getAll method we will create a function of type **BookHandlers["getAll"]** like below :
@@ -418,7 +420,7 @@ const getAllBooks:BookHandlers["getAll"] = async (req, res) => {
 export default getAllBooks
 ```
 
----
+## Add the handlers to the controller
 
 The **controller** file will contain a controller object with all our handlers as key like this :
 
@@ -440,7 +442,7 @@ const controller = {
 export default controller;
 ```
 
----
+## Create the routes
 
 Now you can repeat the operation for each file in the handlers folder, don't forget to complete the **interface.ts** file before the method !
 
@@ -478,6 +480,33 @@ const router = Router();
 router.use("/books", books);
 
 export default router;
+```
+
+**Almost done !!**
+
+Now you will have to add the entry point of the API routes !
+
+In the **app.ts** file add this like :
+
+```ts
+app.use("/api/v1", api);
+```
+
+The file will look like below :
+
+```ts
+import Express from "express";
+
+import api from "./api";
+
+const app = Express();
+
+app.use(Express.json());
+
+// this line !!
+app.use("/api/v1", api);
+
+export default app;
 ```
 
 ## Hurray ! You wrote your first CRUD !!
