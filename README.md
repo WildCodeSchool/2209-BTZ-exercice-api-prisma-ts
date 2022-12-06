@@ -61,6 +61,43 @@ When all the dependencies are setup you will have to create a dev script to laun
 }
 ```
 
+## Check
+
+When the previous steps are done, your package.json should look like below:
+
+```json
+{
+  "name": "2209-btz-exercice-api-prisma-ts",
+  "version": "1.0.0",
+  "description": "Hi! Here is an exerice for you ! The goal is to build a simple API to manage:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildCodeSchool/2209-BTZ-exercice-api-prisma-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WildCodeSchool/2209-BTZ-exercice-api-prisma-ts/issues"
+  },
+  "homepage": "https://github.com/WildCodeSchool/2209-BTZ-exercice-api-prisma-ts#readme",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.7.1",
+    "@types/express": "^4.17.14",
+    "express": "^4.18.2",
+    "prisma": "^4.7.1"
+  }
+}
+```
+
 ## Init Typescript
 
 In order to initialize typescript in your application you will now have to launch this command :
@@ -243,7 +280,7 @@ For mysql set up the provider like below :
 
 ```
 datasource  db  {
-provider = "mysql"
+provider = "postgresql"
 url = env("DATABASE_URL")
 }
 ```
