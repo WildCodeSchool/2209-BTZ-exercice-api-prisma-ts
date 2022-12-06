@@ -243,7 +243,7 @@ For mysql set up the provider like below :
 
 ```
 datasource  db  {
-provider = "postgresql"
+provider = "mysql"
 url = env("DATABASE_URL")
 }
 ```
