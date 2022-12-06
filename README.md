@@ -315,6 +315,19 @@ If you want to visualize and manage your database you can run
 npx prisma studio
 ```
 
+## Create the prisma client file
+
+To import and use the prisma client you have to create a file **client.ts** in the prisma folder.
+In this file import PrismaClient and create a new instance of the PrismaClient Class like this :
+
+```ts
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default prisma;
+```
+
 ## Define the routes for your API !
 
 When **Prisma** is properly set up, it's time to define the routes for your entities !
