@@ -118,13 +118,17 @@ You should see this in the terminal :
 Server is running on port 5000 🚀
 ```
 
-# Prisma init
+In your favorite http client you can launch a GET request on http://localhost:5000 an you should see a "Hello world" message in the response.
+
+# Prisma Schema
 
 **Be sure your database is running on docker before going further !**
 
+In order to have the synthax highlight in VSCode please install the Prisma extension.
+
 Now we have to build our database ! Don't be afraid of this step !
 
-Before prisma, we used to build our databases with SQL queries... beurk !!
+Before Prisma, we used to build our databases with SQL queries... beurk !!
 Now it is way more simple ! Take a look at it !
 I don't give you the entire Schema for this application, just a sample, the rest is up to you !
 
@@ -188,6 +192,38 @@ posts  Post[]
 
 Now you should be able to understand how to build the book API schema.
 
+## Prisma database connection
+
+Prisma is able to connect with any type of database ( MySQL, postgreSQL, MongoDB ... ).
+Once you run this command
+
+```
+npx prisma init
+```
+
+you should see a .env file at the root of your folder.
+In this .env file there is a DATABASE_URL key with contain a connection string with all the informations to connect with your database.
+
+The sample connection string look like so:
+
+```
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+```
+
+- `postgresql://` is the database protocol for mysql use `mysql://`
+- `johndoe` is your database username
+- `randompassword`is the database password
+- `localhost`is the database host, use localhost if your database is running on your system or in a docker container
+- `5432` is the port your database is running on ( usually something like 3306 or 3308 for mysql ).
+- `mydb`is the name of the database you wanna connect to
+
+Now you should know how to replace those values in order to connect your Prisma application to your database.
+
 ## Prisma Commands
 
 Once the prisma schema is written, you have to migrate the changes to your database and to generate the prisma client.
@@ -205,6 +241,12 @@ npx prisma generate
 ```
 
 **Dont forget to run this two commands if you apply changes to the schema**
+
+If you want to visualize and manage your database you can run
+
+```
+npx prisma studio
+```
 
 ## Let's go !
 
