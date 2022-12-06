@@ -13,17 +13,7 @@ You have to use Prisma, MySQL on Docker and Typescript.
 
 ## Setup
 
-First you have to clone this repo :
-
-```
-git clone https://github.com/WildCodeSchool/2209-BTZ-exercice-api-prisma-ts
-```
-
-and
-
-```
-cd 2209-BTZ-exercice-api-prisma-ts
-```
+First you have to init a repo :
 
 Once in the repo folder you have to initialize a new NodeJS application with :
 
