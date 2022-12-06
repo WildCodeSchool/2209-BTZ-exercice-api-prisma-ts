@@ -34,7 +34,7 @@ model User {
 
 model Collection {
   id        String      @id @default(uuid())
-  name      String
+  name      String      @unique
   books    Book[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
