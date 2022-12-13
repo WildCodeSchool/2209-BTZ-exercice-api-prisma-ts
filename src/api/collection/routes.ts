@@ -8,6 +8,5 @@ router.get("/:id", controller.getOne);
 router.post("/", controller.create);
 router.put("/:id", controller.update);
 router.delete("/:id", controller.delete);
-// add the rest of the routes here
 
 export default router;

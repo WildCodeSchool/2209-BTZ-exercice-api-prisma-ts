@@ -1,5 +1,4 @@
-import { Book } from "@prisma/client";
-import { BookHandlers } from "../interface";
+import { BookHandlers, PostBody } from "../interface";
 import prisma from "../../../../prisma/client";
 
 const createBook: BookHandlers["create"] = async (req, res) => {
