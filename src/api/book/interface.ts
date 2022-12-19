@@ -8,8 +8,18 @@ export type PostBody = Omit<
   "id" | "createdAt" | "updatedAt" | "collectionId"
 > & { collectionName: string };
 
+type GetAllBooksQueryParams = {
+  orderBy: "createdAt" | "updatedAt" | "title";
+  order: "asc" | "desc";
+};
+
 export interface BookHandlers {
-  getAll: RequestHandler<null, Book[] | ResponseError, null>;
+  getAll: RequestHandler<
+    null,
+    Book[] | ResponseError,
+    null,
+    GetAllBooksQueryParams
+  >;
   getOne: RequestHandler<IdParam, Book | ResponseError, null>;
   create: RequestHandler<null, Book | ResponseError, PostBody>;
   delete: RequestHandler<IdParam, { message: string } | ResponseError, null>;
